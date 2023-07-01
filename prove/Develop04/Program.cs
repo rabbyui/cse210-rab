@@ -221,3 +221,7 @@ class ListingActivity : MindfulnessActivity
         DisplayEndingMessage();
     }
 }
+
+
+// Exceed the requirements in comments in the Program.cs file:
+// I made different animation "AnimateText" and "AnimateCountdown".
