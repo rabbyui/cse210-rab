@@ -4,6 +4,8 @@ using System.Threading;
 
 class Program
 {
+    private static Dictionary<string, int> activityLog = new Dictionary<string, int>();
+
     static void Main(string[] args)
     {
         Menu();
@@ -30,24 +32,50 @@ class Program
             case 1:
                 BreathingActivity breathingActivity = new BreathingActivity();
                 breathingActivity.Start();
+                LogActivity(breathingActivity.Name);
                 break;
             case 2:
                 ReflectionActivity reflectionActivity = new ReflectionActivity();
                 reflectionActivity.Start();
+                LogActivity(reflectionActivity.Name);
                 break;
             case 3:
                 ListingActivity listingActivity = new ListingActivity();
                 listingActivity.Start();
+                LogActivity(listingActivity.Name);
                 break;
             case 4:
                 Console.WriteLine("Very well! Enjoy the rest of the day!");
                 Console.WriteLine();
+                PrintActivityLog();
                 Environment.Exit(0);
                 break;
         }
 
         Console.WriteLine();
         Menu();
+    }
+
+    static void LogActivity(string activityName)
+    {
+        if (activityLog.ContainsKey(activityName))
+        {
+            activityLog[activityName]++;
+        }
+        else
+        {
+            activityLog[activityName] = 1;
+        }
+    }
+
+    static void PrintActivityLog()
+    {
+        Console.WriteLine("Activity Log:");
+        foreach (var activity in activityLog)
+        {
+            Console.WriteLine($"{activity.Key}: {activity.Value} times");
+        }
+        Console.WriteLine();
     }
 }
 
@@ -222,6 +250,6 @@ class ListingActivity : MindfulnessActivity
     }
 }
 
-
-// Exceed the requirements in comments in the Program.cs file:
+// // Exceed the requirements in comments in the Program.cs file:
 // I made different animation "AnimateText" and "AnimateCountdown".
+// I added a log of how many times activities were performed. 
